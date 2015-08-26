@@ -74,7 +74,7 @@ hooks.before('GET /machines -> 200 second test case', function(test, done) {
     done();
 });
 
-hooks.after('GET /machines -> 200' second test case, function(test, done) {
+hooks.after('GET /machines -> 200 second test case', function(test, done) {
     machine = test.response.body[0];
     console.log(machine.name);
     done();
