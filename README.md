@@ -68,6 +68,17 @@ hooks.after('GET /machines -> 200', function(test, done) {
     console.log(machine.name);
     done();
 });
+
+hooks.before('GET /machines -> 200 second test case', function(test, done) {
+    test.request.query = {color: 'red'};
+    done();
+});
+
+hooks.after('GET /machines -> 200' second test case, function(test, done) {
+    machine = test.response.body[0];
+    console.log(machine.name);
+    done();
+});
 ```
 
 Write a hookfile in **CoffeeScript**:

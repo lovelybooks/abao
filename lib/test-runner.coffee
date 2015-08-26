@@ -61,7 +61,18 @@ class TestRunner
           test.request.server = server
           _.extend(test.request.headers, options.header)
 
-          addTestToMocha test, hooks
+          regex = new RegExp('^' + test.name, 'i')
+          found = false
+          _.each _.keys(hooks.beforeHooks), (key) ->
+            if regex.test(key)
+              newTest = _.clone(test)
+              newTest.name = key
+              addTestToMocha newTest, hooks
+              found = true
+            return
+
+          if !found
+            addTestToMocha test, hooks
           done()
         , callback
       , # Run mocha
